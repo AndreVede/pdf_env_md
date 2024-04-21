@@ -23,7 +23,7 @@ mdToPdf(
     },
 )
     .then((pdf) => {
-        fs.writeFileSync('discours-19.pdf', pdf.content);
+        fs.writeFileSync('output/discours-19.pdf', pdf.content);
     })
     .catch((error) => {
         console.error(error);
