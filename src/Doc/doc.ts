@@ -32,7 +32,7 @@ class Doc {
 
     public async toPdf(): Promise<PdfOutput> {
         const pdf = await mdToPdf({ content: this.documentRaw }, this.options);
-        this.checkOutputDir();
+        this.cleanOutputDir();
         fs.writeFileSync(
             path.resolve(this.outDirName, this.documentName + '.pdf'),
             pdf.content,
@@ -40,9 +40,13 @@ class Doc {
         return pdf;
     }
 
-    private checkOutputDir(): void {
+    private cleanOutputDir(): void {
         if (!fs.existsSync(path.resolve(this.outDirName))) {
             fs.mkdirSync(path.resolve(this.outDirName));
+        } else {
+            fs.readdirSync(path.resolve(this.outDirName)).forEach((file) =>
+                fs.unlinkSync(path.resolve(this.outDirName, file)),
+            );
         }
     }
 }
