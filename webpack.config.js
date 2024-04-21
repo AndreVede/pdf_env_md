@@ -1,13 +1,19 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const autoprefixer = require('autoprefixer');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = (env, argv) => {
     const mode = argv.mode;
     const conf = {
         entry: [path.resolve('src', 'index.ts')],
         devtool: isProd(mode) ? undefined : 'inline-source-map',
-        plugins: [],
+        plugins: [
+            new Dotenv({
+                path: path.resolve(__dirname, '.env'),
+                defaults: true,
+            }),
+        ],
         module: {
             rules: [
                 {
