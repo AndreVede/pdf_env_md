@@ -12,6 +12,7 @@ mdToPdf(
         page_media_type: 'print',
         pdf_options: {
             format: 'A4',
+            printBackground: true,
             margin: {
                 left: '20mm',
                 right: '20mm',
