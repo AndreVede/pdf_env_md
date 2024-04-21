@@ -3,6 +3,10 @@ const webpackNodeExternals = require('webpack-node-externals');
 const autoprefixer = require('autoprefixer');
 const Dotenv = require('dotenv-webpack');
 
+const dotenv = require('dotenv');
+dotenv.config({ path: path.resolve(__dirname, '.env.defaults') });
+dotenv.config({ path: path.resolve(__dirname, '.env'), override: true });
+
 module.exports = (env, argv) => {
     const mode = argv.mode;
     const conf = {
