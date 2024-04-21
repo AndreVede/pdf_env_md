@@ -1,0 +1,17 @@
+@mixin font-weight($weight) {
+    font-weight: map-get($map: $weights, $key: $weight);
+}
+
+@mixin Roboto($weight, $size: null) {
+    font-size: $size;
+    font-family: 'Roboto';
+    @include font-weight($weight);
+    font-style: normal;
+}
+
+@mixin SortsMillGoudy($weight, $size: null) {
+    font-size: $size;
+    font-family: 'Sorts Mill Goudy';
+    @include font-weight($weight);
+    font-style: normal;
+}
