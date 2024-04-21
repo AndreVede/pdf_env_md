@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { mdToPdf } from 'md-to-pdf';
 
-import md from './discours-19_03_2024.md';
+import md from './text.md';
 
 import CSS from './styles/main.scss';
 
@@ -24,7 +24,7 @@ mdToPdf(
     },
 )
     .then((pdf) => {
-        fs.writeFileSync('output/discours-19.pdf', pdf.content);
+        fs.writeFileSync('output/test.pdf', pdf.content);
     })
     .catch((error) => {
         console.error(error);
