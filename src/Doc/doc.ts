@@ -19,6 +19,7 @@ class Doc {
                 top: '20mm',
                 bottom: '20mm',
             },
+            tagged: true,
         },
         css: CSS.toString(),
     };
