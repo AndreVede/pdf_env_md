@@ -24,11 +24,12 @@ try {
 
     Doc.cleanOutputDir();
 
-    mdList.forEach((md) =>
+    mdList.forEach((md) => {
+        console.log('Work on ' + md.documentName);
         md.toPdf().then(() => {
             console.log(md.documentName, 'done');
-        }),
-    );
+        });
+    });
 } catch (e) {
     console.error(e);
 }
