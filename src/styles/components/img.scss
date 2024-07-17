@@ -1,0 +1,34 @@
+$sizes: (
+    small: 50px,
+    medium: 80px,
+    large: 200px,
+);
+
+.img {
+    &-container {
+        @include flex-center;
+        gap: 5px;
+        width: 100%;
+
+        & > img {
+            object-fit: contain;
+        }
+
+        @each $name, $size in $sizes {
+            &--#{$name} {
+                width: $size;
+                & > img {
+                    width: $size;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    @each $name, $size in $sizes {
+        &--#{$name} {
+            width: $size;
+            height: auto;
+        }
+    }
+}

@@ -15,3 +15,11 @@
     @include font-weight($weight);
     font-style: normal;
 }
+
+@mixin flex-center($direction: row, $justify-content: center) {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: $justify-content;
+    flex-direction: $direction;
+}
