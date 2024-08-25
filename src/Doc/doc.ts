@@ -4,6 +4,8 @@ import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
 import * as fs from 'fs';
 import * as path from 'path';
+import Header from './templates/header.html';
+import Fouter from './templates/footer.html';
 
 class Doc {
     private static readonly outDirName = process.env.outputDir ?? 'output';
@@ -20,6 +22,9 @@ class Doc {
                 bottom: '20mm',
             },
             tagged: true,
+            displayHeaderFooter: true,
+            headerTemplate: Header,
+            footerTemplate: Fouter,
         },
         css: CSS.toString(),
     };

@@ -37,6 +37,10 @@ module.exports = (env, argv) => {
                     use: ['raw-loader'],
                 },
                 {
+                    test: /\.html$/i,
+                    use: 'html-loader',
+                },
+                {
                     test: /\.s[ac]ss$/i,
                     use: [
                         //'style-loader',

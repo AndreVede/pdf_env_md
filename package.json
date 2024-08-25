@@ -16,7 +16,7 @@
         "dotenv": "^16.4.5",
         "dotenv-webpack": "^8.1.0",
         "file-loader": "^6.2.0",
-        "html-loader": "^5.0.0",
+        "html-loader": "^5.1.0",
         "postcss-loader": "^8.1.1",
         "prettier": "^3.2.5",
         "prettier-md": "^0.2.1",
