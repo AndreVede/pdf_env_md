@@ -1,10 +1,10 @@
-import { getHeadingList } from 'marked-gfm-heading-id';
+import { MarkIdHeadingInstance } from '@src/singletons';
 
 /**
  * postprocess hook function to create a TOC
  */
 const TOC = (html: string) => {
-    const headings = getHeadingList();
+    const headings = MarkIdHeadingInstance.getHeadingList();
 
     return `
 <ul id="table-of-contents">

@@ -2,12 +2,12 @@ import { PdfConfig } from 'md-to-pdf/dist/lib/config';
 import CSS from '@src/styles/main.scss';
 import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
-import { gfmHeadingId } from 'marked-gfm-heading-id';
 import * as fs from 'fs';
 import * as path from 'path';
 import Header from './templates/header.html';
 import Fouter from './templates/footer.html';
 import TOC from './plugins_marked/TOC';
+import { MarkIdHeadingInstance } from '@src/singletons';
 
 class Doc {
     private static readonly outDirName = process.env.outputDir ?? 'output';
@@ -44,9 +44,12 @@ class Doc {
             },
             css: CSS.toString(),
             marked_options: {
-                hooks: { postprocess: this.generateTOC ? TOC : undefined },
+                hooks: {
+                    ...MarkIdHeadingInstance.getHooks(),
+                    postprocess: this.generateTOC ? TOC : undefined,
+                },
             },
-            marked_extensions: [gfmHeadingId()],
+            marked_extensions: MarkIdHeadingInstance.getExtensions(),
         };
     }
 

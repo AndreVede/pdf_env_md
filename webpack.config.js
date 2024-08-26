@@ -1,20 +1,23 @@
-const path = require('path');
-const webpackNodeExternals = require('webpack-node-externals');
-const autoprefixer = require('autoprefixer');
-const Dotenv = require('dotenv-webpack');
+import * as path from 'path';
+import webpackNodeExternals from 'webpack-node-externals';
+import autoprefixer from 'autoprefixer';
+import DotenvWebpackPlugin from 'dotenv-webpack';
+import * as dotenv from 'dotenv';
 
-const dotenv = require('dotenv');
-dotenv.config({ path: path.resolve(__dirname, '.env.defaults') });
-dotenv.config({ path: path.resolve(__dirname, '.env'), override: true });
+dotenv.config({ path: path.resolve(import.meta.dirname, '.env.defaults') });
+dotenv.config({
+    path: path.resolve(import.meta.dirname, '.env'),
+    override: true,
+});
 
-module.exports = (env, argv) => {
+export default (env, argv) => {
     const mode = argv.mode;
     const conf = {
         entry: [path.resolve('src', 'index.ts')],
         devtool: isProd(mode) ? undefined : 'inline-source-map',
         plugins: [
-            new Dotenv({
-                path: path.resolve(__dirname, '.env'),
+            new DotenvWebpackPlugin({
+                path: path.resolve(import.meta.dirname, '.env'),
                 defaults: true,
             }),
         ],
@@ -116,14 +119,15 @@ module.exports = (env, argv) => {
             alias: { '@src': path.resolve('src') },
         },
         output: {
-            filename: 'bundle.js',
+            filename: 'bundle.cjs',
             path: path.resolve('build'),
             clean: true,
-            libraryTarget: 'umd', // ssr
+            library: { name: 'markdown-env', type: 'umd' }, // ssr
             globalObject: 'this', // ssr
         },
         target: 'node', // ssr
-        externals: [webpackNodeExternals()],
+        externalsPresets: { node: true }, // ssr
+        externals: [webpackNodeExternals({ allowlist: ['github-slugger'] })], // ssr
         watchOptions: {
             ignored: /node_modules/,
         },
