@@ -1,5 +1,5 @@
 import GithubSlugger from 'github-slugger';
-import { Hooks, MarkedOptions, TokenizerAndRendererExtension } from 'marked';
+import { Hooks, TokenizerAndRendererExtension } from 'marked';
 import { tokenIsHeading } from '../marked-utils';
 
 export interface Heading {

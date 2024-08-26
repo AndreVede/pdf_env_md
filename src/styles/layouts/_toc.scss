@@ -1,8 +1,8 @@
-ul.table-of-contents {
+ul#table-of-contents {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
-    align-content: flex-start;
+    align-items: flex-start;
+    align-content: center;
     flex-wrap: nowrap;
     flex-direction: column;
 
@@ -11,17 +11,17 @@ ul.table-of-contents {
     margin: 0;
     padding: 0;
 
+    height: 100vh;
+
     & > li {
         @include flex-center($direction: row);
         margin: 0;
         padding: 0;
         list-style: none;
-
-        & > a {
-            @for $i from 1 through 7 {
-                &.h#{$i} {
-                    font-size: 20px - $i;
-                }
+        @for $i from 1 through 7 {
+            & > a.h#{$i} {
+                font-size: (15 - $i) * 1px;
+                margin-left: ($i - 1) * 12px;
             }
         }
     }

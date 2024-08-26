@@ -49,7 +49,9 @@ class Doc {
                     postprocess: this.generateTOC ? TOC : undefined,
                 },
             },
-            marked_extensions: MarkIdHeadingInstance.getExtensions(),
+            marked_extensions: [
+                { extensions: [...MarkIdHeadingInstance.getExtensions()] },
+            ],
         };
     }
 
