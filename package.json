@@ -8,7 +8,8 @@
     "scripts": {
         "build": "tsc && vite build",
         "buildOnce": "tsc && vite build --no-watch",
-        "start": "tsc && vite build --no-watch && bun run ./build/index.js"
+        "start": "tsc && vite build --no-watch && bun run ./build/index.js",
+        "format": "prettier . --write"
     },
     "devDependencies": {
         "@types/marked": "^6.0.0",
