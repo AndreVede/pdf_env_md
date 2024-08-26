@@ -1,5 +1,7 @@
 # Markdown To PDF Environment
 
+[![NodeJS with bun](https://github.com/AndreVede/pdf_env_md/actions/workflows/webpack.yml/badge.svg?branch=main)](https://github.com/AndreVede/pdf_env_md/actions/workflows/webpack.yml)
+
 When you want to edit your PDF in Markdown.
 
 ## Write
