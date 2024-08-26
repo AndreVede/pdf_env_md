@@ -1,5 +1,4 @@
 import { MarkIdHeadingInstance } from '@src/singletons';
-import CSS from '@src/styles/main.scss';
 
 /**
  * postprocess hook function to create a TOC
