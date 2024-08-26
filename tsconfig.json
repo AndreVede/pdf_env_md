@@ -1,19 +1,27 @@
 {
     "compilerOptions": {
-        "outDir": "./build/",
-        "baseUrl": ".",
+        "target": "ES2020",
+        "useDefineForClassFields": true,
+        "module": "ESNext",
+        "lib": ["ES2020", "DOM", "DOM.Iterable"],
+        "skipLibCheck": true,
         "paths": {
             "@src/*": ["./src/*"]
         },
-        "noImplicitAny": true,
-        "module": "ES2022",
-        "target": "ES2016",
-        "allowJs": true,
-        "jsx": "react",
-        "moduleResolution": "node",
+
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "noEmit": true,
+
+        /* Linting */
         "strict": true,
-        "esModuleInterop": true
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "types": ["vite/client"]
     },
-    "include": ["./src/**/*.ts", "src/**/*.tsx"],
-    "exclude": ["**/*.spec.ts"]
+    "include": ["src"]
 }

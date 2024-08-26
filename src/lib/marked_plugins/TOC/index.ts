@@ -1,4 +1,4 @@
-import { MarkIdHeadingInstance } from '@src/singletons';
+import { MarkIdHeadingInstance } from '@src/lib/singletons';
 
 /**
  * postprocess hook function to create a TOC

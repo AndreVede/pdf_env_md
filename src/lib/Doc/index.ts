@@ -1,13 +1,13 @@
 import { PdfConfig } from 'md-to-pdf/dist/lib/config';
-import CSS from '@src/styles/main.scss';
+import CSS from '@src/styles/main.scss?inline';
 import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
 import * as fs from 'fs';
 import * as path from 'path';
-import Header from './templates/header.html';
-import Fouter from './templates/footer.html';
-import TOC from './plugins_marked/TOC';
-import { MarkIdHeadingInstance } from '@src/singletons';
+import Header from '@src/lib/Doc/templates/header.html?raw';
+import Fouter from '@src/lib/Doc/templates/footer.html?raw';
+import TOC from '@src/lib/marked_plugins/TOC';
+import { MarkIdHeadingInstance } from '@src/lib/singletons';
 
 class Doc {
     private static readonly outDirName = process.env.outputDir ?? 'output';
@@ -46,7 +46,7 @@ class Doc {
                 headerTemplate: Header,
                 footerTemplate: Fouter,
             },
-            css: CSS.toString(),
+            css: CSS,
             marked_options: {
                 hooks: {
                     ...MarkIdHeadingInstance.getHooks(),
