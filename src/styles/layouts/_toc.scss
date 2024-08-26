@@ -1,0 +1,26 @@
+ul.table-of-contents {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+    margin: 0;
+    padding: 0;
+
+    & > li {
+        @include flex-center($direction: row);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        & > a {
+            @for $i from 1 through 7 {
+                &.h#{$i} {
+                    font-size: 20px - $i;
+                }
+            }
+        }
+    }
+}

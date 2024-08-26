@@ -2,38 +2,52 @@ import { PdfConfig } from 'md-to-pdf/dist/lib/config';
 import CSS from '@src/styles/main.scss';
 import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
+import { gfmHeadingId } from 'marked-gfm-heading-id';
 import * as fs from 'fs';
 import * as path from 'path';
 import Header from './templates/header.html';
 import Fouter from './templates/footer.html';
+import TOC from './plugins_marked/TOC';
 
 class Doc {
     private static readonly outDirName = process.env.outputDir ?? 'output';
-    private readonly options: Partial<PdfConfig> = {
-        highlight_style: 'monokai',
-        page_media_type: 'print',
-        pdf_options: {
-            format: 'A4',
-            printBackground: true,
-            margin: {
-                left: '20mm',
-                right: '20mm',
-                top: '20mm',
-                bottom: '20mm',
-            },
-            tagged: true,
-            displayHeaderFooter: true,
-            headerTemplate: Header,
-            footerTemplate: Fouter,
-        },
-        css: CSS.toString(),
-    };
+    private readonly options: Partial<PdfConfig>;
     public documentName: string;
     private documentRaw: any;
+    private readonly generateTOC: boolean;
 
-    constructor(documentName: string, documentRaw: any) {
+    constructor(
+        documentName: string,
+        documentRaw: any,
+        generateTOC: boolean = false,
+    ) {
         this.documentName = documentName;
         this.documentRaw = documentRaw;
+        this.generateTOC = generateTOC;
+
+        this.options = {
+            highlight_style: 'monokai',
+            page_media_type: 'print',
+            pdf_options: {
+                format: 'A4',
+                printBackground: true,
+                margin: {
+                    left: '20mm',
+                    right: '20mm',
+                    top: '20mm',
+                    bottom: '20mm',
+                },
+                tagged: true,
+                displayHeaderFooter: true,
+                headerTemplate: Header,
+                footerTemplate: Fouter,
+            },
+            css: CSS.toString(),
+            marked_options: {
+                hooks: { postprocess: this.generateTOC ? TOC : undefined },
+            },
+            marked_extensions: [gfmHeadingId()],
+        };
     }
 
     public async toPdf(): Promise<PdfOutput> {
