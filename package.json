@@ -7,6 +7,7 @@
     "type": "module",
     "scripts": {
         "build": "tsc && vite build",
+        "buildOnce": "tsc && vite build --no-watch",
         "start": "tsc && vite build --no-watch && bun run ./build/index.js"
     },
     "devDependencies": {
