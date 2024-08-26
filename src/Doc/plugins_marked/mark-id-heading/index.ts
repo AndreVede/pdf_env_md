@@ -29,7 +29,6 @@ export default class MarkIdHeading {
         this.globalSlugs = globalSlugs ?? this.globalSlugs;
     }
 
-    /* istanbul ignore next */
     public unescape(html: string) {
         // explicitly match decimal, hex, and named HTML entities
         return html.replace(this.unescapeRegex, (_, n) => {

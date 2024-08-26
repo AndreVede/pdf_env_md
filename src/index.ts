@@ -19,7 +19,7 @@ try {
     const dir = fs.readdirSync(markdownsDir);
     dir.forEach((file: string) => {
         const markdown: Buffer = fs.readFileSync(path.join(markdownsDir, file));
-        mdList.push(new Doc(file.split('.')[0], markdown, true));
+        mdList.push(new Doc(file.split('.')[0], markdown));
     });
 
     Doc.cleanOutputDir();

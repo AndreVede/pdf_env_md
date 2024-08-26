@@ -19,11 +19,15 @@ class Doc {
     constructor(
         documentName: string,
         documentRaw: any,
-        generateTOC: boolean = false,
+        forceGenerateTOC?: boolean,
     ) {
         this.documentName = documentName;
         this.documentRaw = documentRaw;
-        this.generateTOC = generateTOC;
+
+        // check if there is a comment <!-- toc -->
+        this.generateTOC =
+            forceGenerateTOC ??
+            this.checkIfThereIsTocComment(String(this.documentRaw));
 
         this.options = {
             highlight_style: 'monokai',
@@ -46,7 +50,9 @@ class Doc {
             marked_options: {
                 hooks: {
                     ...MarkIdHeadingInstance.getHooks(),
-                    postprocess: this.generateTOC ? TOC : undefined,
+                    postprocess: this.generateTOC
+                        ? TOC
+                        : (html: string) => html, // to prevent an undefined value
                 },
             },
             marked_extensions: [
@@ -77,6 +83,10 @@ class Doc {
                 fs.unlinkSync(path.resolve(this.outDirName, file)),
             );
         }
+    }
+
+    private checkIfThereIsTocComment(html: string): boolean {
+        return /\<!-- toc -->/i.test(html);
     }
 }
 
