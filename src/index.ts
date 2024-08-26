@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import Doc from './Doc/doc';
+import Doc from '@src/lib/Doc';
 
 const markdownsDir: string = path.resolve(
     process.env.markdownsDir ?? 'markdowns',
