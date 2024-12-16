@@ -1,9 +1,9 @@
 @use 'sass:math';
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Sorts+Mill+Goudy:ital@0;1&display=swap');
+@use 'sass:map';
+@use '../utils' as utils;
 
 body {
-    @include Roboto(regular, 13px);
+    @include utils.Roboto(regular, 13px);
 }
 
 @for $i from 1 through 7 {
@@ -11,29 +11,29 @@ body {
         font-size: math.div(-1, $i + 0.5) * 1.5 * 20px;
 
         @if ($i == 1) {
-            color: map-get($map: $colors, $key: primary);
-            @include SortsMillGoudy(regular);
+            color: map.get($map: utils.$colors, $key: primary);
+            @include utils.SortsMillGoudy(regular);
             text-align: center;
         }
         @if ($i == 2) {
-            color: map-get($map: $colors, $key: secondary);
+            color: map.get($map: utils.$colors, $key: secondary);
         }
         @if ($i == 3) {
-            color: map-get($map: $colors, $key: tertiary);
+            color: map.get($map: utils.$colors, $key: tertiary);
         }
         @if ($i == 4) {
-            color: map-get($map: $colors, $key: primary);
+            color: map.get($map: utils.$colors, $key: primary);
             text-decoration: underline;
-            @include Roboto(medium);
+            @include utils.Roboto(medium);
         }
         @if ($i == 5) {
-            color: map-get($map: $colors, $key: secondary);
+            color: map.get($map: utils.$colors, $key: secondary);
             text-decoration: underline;
-            @include Roboto(medium);
+            @include utils.Roboto(medium);
         }
     }
 }
 
 blockquote {
-    @include SortsMillGoudy(regular, 15px);
+    @include utils.SortsMillGoudy(regular, 15px);
 }

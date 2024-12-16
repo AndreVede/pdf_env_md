@@ -1,5 +1,8 @@
+@use 'sass:map';
+@use '../variables' as var;
+
 @mixin font-weight($weight) {
-    font-weight: map-get($map: $weights, $key: $weight);
+    font-weight: map.get($map: var.$weights, $key: $weight);
 }
 
 @mixin Roboto($weight, $size: null) {
@@ -14,12 +17,4 @@
     font-family: 'Sorts Mill Goudy';
     @include font-weight($weight);
     font-style: normal;
-}
-
-@mixin flex-center($direction: row, $justify-content: center) {
-    display: flex;
-    align-items: center;
-    align-content: center;
-    justify-content: $justify-content;
-    flex-direction: $direction;
 }
