@@ -1,3 +1,5 @@
+@use '../utils' as utils;
+
 ul#table-of-contents {
     display: flex;
     justify-content: flex-start;
@@ -14,7 +16,7 @@ ul#table-of-contents {
     height: 100vh;
 
     & > li {
-        @include flex-center($direction: row);
+        @include utils.flex-center($direction: row);
         margin: 0;
         padding: 0;
         list-style: none;
