@@ -24,6 +24,4 @@ dist-ssr
 *.sw?
 
 # Markdowns
-markdowns
-output
 build
