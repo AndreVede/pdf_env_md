@@ -17,10 +17,14 @@ let mdList: Doc[] = [];
 // Get all markdowns in markdowns folder in src
 try {
     const dir = fs.readdirSync(markdownsDir);
-    dir.forEach((file: string) => {
-        const markdown: Buffer = fs.readFileSync(path.join(markdownsDir, file));
-        mdList.push(new Doc(file.split('.')[0], markdown));
-    });
+    dir.filter((file: string) => /.md$/i.test(file)) // keep only markdown
+        .forEach((file: string) => {
+            const markdown: Buffer = fs.readFileSync(
+                path.join(markdownsDir, file),
+            );
+
+            mdList.push(new Doc(file.split('.')[0], markdown));
+        });
 
     Doc.cleanOutputDir();
 
