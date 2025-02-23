@@ -6,21 +6,21 @@
     "version": "1.0.0",
     "type": "module",
     "scripts": {
-        "build": "tsc && vite build",
-        "buildOnce": "tsc && vite build --no-watch",
-        "start": "tsc && vite build --no-watch && bun run ./build/index.js",
+        "build": "tsc && vite build --watch",
+        "buildOnce": "tsc && vite build",
+        "start": "tsc && vite build && bun run ./build/index.js",
         "format": "prettier . --write"
     },
     "devDependencies": {
-        "@types/marked": "^6.0.0",
+        "@types/marked": "^5.0.2",
         "autoprefixer": "^10.4.20",
         "github-slugger": "^2.0.0",
-        "marked": "^14.1.4",
+        "marked": "^15.0.7",
         "md-to-pdf": "^5.2.4",
         "prettier": "^3.5.2",
         "sass": "^1.85.0",
         "typescript": "^5.7.3",
-        "vite": "^5.4.14"
+        "vite": "^6.1.1"
     },
     "license": "BSD-3-Clause",
     "dependencies": {
