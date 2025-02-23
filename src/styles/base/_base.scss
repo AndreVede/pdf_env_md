@@ -3,7 +3,7 @@
 @use '../utils' as utils;
 
 body {
-    @include utils.Roboto(regular, 13px);
+    @include utils.Roboto(regular, 14px);
 }
 
 @for $i from 1 through 7 {
