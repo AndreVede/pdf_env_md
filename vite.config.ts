@@ -14,7 +14,6 @@ export default defineConfig({
             input: path.resolve(import.meta.dirname, 'src', 'index.ts'),
         },
         ssr: true,
-        watch: {},
     },
     ssr: {},
     css: {
