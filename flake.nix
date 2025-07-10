@@ -16,13 +16,16 @@
       };
     };
   in {
-
     devShells.${system}.default = pkgs.mkShell {
+      shellHook = ''
+        bun i
+        bun x puppeteer install chrome@latest
+      '';
+
       buildInputs = with pkgs; [
         bun
         nodejs_22
       ];
     };
-
   };
 }
