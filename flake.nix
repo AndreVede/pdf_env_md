@@ -18,13 +18,17 @@
   in {
     devShells.${system}.default = pkgs.mkShell {
       shellHook = ''
+        export PUPPETEER_EXECUTABLE_PATH=${pkgs.chromium}/bin/chromium
         bun i
-        bun x puppeteer install chrome@latest
       '';
 
       buildInputs = with pkgs; [
         bun
         nodejs_22
+        chromium
+        glib
+        nss         # pour TLS
+        cacert      # certificats racines
       ];
     };
   };
