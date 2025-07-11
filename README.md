@@ -13,4 +13,4 @@ Write your markdowns inside and when you want to build output, `bun install` and
 If you get an error from puppeteer, consider that:
 
 - You should have a connection to the Internet.
-- Also, run `bun x puppeteer browsers install chrome` to install chrome for puppeteer.
+- Also, run `bun x puppeteer browsers install chrome` to install chrome for puppeteer or use `nix develop` if you have **nix** installed.
