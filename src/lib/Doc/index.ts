@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as pug from 'pug';
 import Header from '@src/lib/Doc/templates/header.pug?raw';
-import Fouter from '@src/lib/Doc/templates/footer.pug?raw';
+import Footer from '@src/lib/Doc/templates/footer.pug?raw';
 import TOC from '@src/lib/marked_plugins/TOC';
 import { MarkIdHeadingInstance } from '@src/lib/singletons';
 
@@ -30,11 +30,11 @@ class Doc {
             forceGenerateTOC ??
             this.checkIfThereIsTocComment(String(this.documentRaw));
 
-        const lang = this.getLanguage(String(this.documentRaw));
-        console.log(lang);
-
         const header = pug.compile(Header, { name: 'header' })();
-        const footer = pug.compile(Fouter, { name: 'footer' })({ lang: lang });
+        const footer = pug.compile(Footer, { name: 'footer' })({
+            lang: this.getLanguage(String(this.documentRaw)), // check lang
+            pagination: this.checkPagination(String(this.documentRaw)), // check pagination
+        });
 
         this.options = {
             highlight_style: 'monokai',
@@ -93,12 +93,16 @@ class Doc {
     }
 
     private checkIfThereIsTocComment(html: string): boolean {
-        return /^\<!--? toc? --\>/i.test(html);
+        return /^\<!--[\w\s]*toc?[\w\s]*--\>/i.test(html);
+    }
+
+    private checkPagination(html: string): boolean {
+        return /^\<!--[\w\s]*pagination[\w\s]*--\>/i.test(html);
     }
 
     private getLanguage(html: string): string {
         const lang: RegExpExecArray | null =
-            /\<!--\w*? lang="(en|fr)"? \w*--\>/.exec(html);
+            /\<!--[\w\s]*lang="(en|fr)"[\w\s]*--\>/.exec(html);
 
         return lang?.[1] ?? 'en';
     }

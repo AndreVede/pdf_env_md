@@ -2,4 +2,7 @@
 if lang == "fr"
     - on_label = "sur"
 
-section.footer Page #[span.pageNumber] #{on_label} #[span.totalPages]
+if pagination
+    section.footer Page #[span.pageNumber] #{on_label} #[span.totalPages]
+else
+    div
