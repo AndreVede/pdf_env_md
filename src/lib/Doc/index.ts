@@ -4,8 +4,9 @@ import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
 import * as fs from 'fs';
 import * as path from 'path';
-import Header from '@src/lib/Doc/templates/header.html?raw';
-import Fouter from '@src/lib/Doc/templates/footer.html?raw';
+import * as pug from 'pug';
+import Header from '@src/lib/Doc/templates/header.pug?raw';
+import Fouter from '@src/lib/Doc/templates/footer.pug?raw';
 import TOC from '@src/lib/marked_plugins/TOC';
 import { MarkIdHeadingInstance } from '@src/lib/singletons';
 
@@ -29,6 +30,12 @@ class Doc {
             forceGenerateTOC ??
             this.checkIfThereIsTocComment(String(this.documentRaw));
 
+        const lang = this.getLanguage(String(this.documentRaw));
+        console.log(lang);
+
+        const header = pug.compile(Header, { name: 'header' })();
+        const footer = pug.compile(Fouter, { name: 'footer' })({ lang: lang });
+
         this.options = {
             highlight_style: 'monokai',
             page_media_type: 'print',
@@ -43,8 +50,8 @@ class Doc {
                 },
                 tagged: true,
                 displayHeaderFooter: true,
-                headerTemplate: Header,
-                footerTemplate: Fouter,
+                headerTemplate: header,
+                footerTemplate: footer,
             },
             css: CSS,
             marked_options: {
@@ -86,7 +93,14 @@ class Doc {
     }
 
     private checkIfThereIsTocComment(html: string): boolean {
-        return /\<!-- toc -->/i.test(html);
+        return /^\<!--? toc? --\>/i.test(html);
+    }
+
+    private getLanguage(html: string): string {
+        const lang: RegExpExecArray | null =
+            /\<!--\w*? lang="(en|fr)"? \w*--\>/.exec(html);
+
+        return lang?.[1] ?? 'en';
     }
 }
 

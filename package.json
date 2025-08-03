@@ -12,18 +12,20 @@
         "format": "prettier . --write"
     },
     "devDependencies": {
-        "@types/marked": "^5.0.2",
-        "autoprefixer": "^10.4.20",
+        "@types/marked": "^6.0.0",
+        "@types/pug": "^2.0.10",
+        "autoprefixer": "^10.4.21",
         "github-slugger": "^2.0.0",
-        "marked": "^15.0.7",
+        "marked": "^16.1.1",
         "md-to-pdf": "^5.2.4",
-        "prettier": "^3.5.2",
-        "sass": "^1.85.0",
-        "typescript": "^5.7.3",
-        "vite": "^6.1.1"
+        "prettier": "^3.6.2",
+        "pug": "^3.0.3",
+        "sass": "^1.89.2",
+        "typescript": "^5.9.2",
+        "vite": "^7.0.6"
     },
     "license": "BSD-3-Clause",
     "dependencies": {
-        "caniuse-lite": "^1.0.30001700"
+        "caniuse-lite": "^1.0.30001731"
     }
 }
