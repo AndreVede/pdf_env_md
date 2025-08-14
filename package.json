@@ -26,6 +26,6 @@
     },
     "license": "BSD-3-Clause",
     "dependencies": {
-        "caniuse-lite": "^1.0.30001731"
+        "caniuse-lite": "^1.0.30001735"
     }
 }
