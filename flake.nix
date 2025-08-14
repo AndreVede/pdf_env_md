@@ -22,6 +22,9 @@
         bun i
       '';
 
+      # make sure dependencies are linked
+      nativeBuildInputs = [ pkgs.pkg-config ];
+
       buildInputs = with pkgs; [
         bun
         nodejs_22
