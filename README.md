@@ -14,3 +14,24 @@ If you get an error from puppeteer, consider that:
 
 - You should have a connection to the Internet.
 - Also, run `bun x puppeteer browsers install chrome` to install chrome for puppeteer or use `nix develop` if you have **nix** installed.
+
+## Configure your file
+
+To use a table of content, you can add the comment :
+
+```markdown
+<!-- toc -->
+```
+
+If you want pagination :
+
+```markdown
+<!-- toc pagination -->
+```
+
+If you want french pagination :
+
+```markdown
+<!-- toc pagination -->
+<!-- lang="fr" -->
+```
