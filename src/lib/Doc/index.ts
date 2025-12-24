@@ -2,8 +2,9 @@ import { PdfConfig } from 'md-to-pdf/dist/lib/config';
 import CSS from '@src/styles/main.scss?inline';
 import { PdfOutput } from 'md-to-pdf/dist/lib/generate-output';
 import mdToPdf from 'md-to-pdf';
-import * as fs from 'fs';
-import * as path from 'path';
+import markedFootnote from 'marked-footnote';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
 import * as pug from 'pug';
 import Header from '@src/lib/Doc/templates/header.pug?raw';
 import Footer from '@src/lib/Doc/templates/footer.pug?raw';
@@ -30,9 +31,11 @@ class Doc {
             forceGenerateTOC ??
             this.checkIfThereIsTocComment(String(this.documentRaw));
 
+        const language = this.getLanguage(String(this.documentRaw)); // check lang
+
         const header = pug.compile(Header, { name: 'header' })();
         const footer = pug.compile(Footer, { name: 'footer' })({
-            lang: this.getLanguage(String(this.documentRaw)), // check lang
+            lang: language, // check lang
             pagination: this.checkPagination(String(this.documentRaw)), // check pagination
         });
 
@@ -64,6 +67,13 @@ class Doc {
             },
             marked_extensions: [
                 { extensions: [...MarkIdHeadingInstance.getExtensions()] },
+                markedFootnote({
+                    footnoteDivider: true,
+                    description:
+                        language === 'fr'
+                            ? 'Notes en bas de page'
+                            : 'Footnotes',
+                }),
             ],
         };
     }

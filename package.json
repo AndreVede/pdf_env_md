@@ -17,6 +17,7 @@
         "autoprefixer": "^10.4.21",
         "github-slugger": "^2.0.0",
         "marked": "^16.1.1",
+        "marked-footnote": "^1.4.0",
         "md-to-pdf": "^5.2.4",
         "prettier": "^3.6.2",
         "pug": "^3.0.3",
