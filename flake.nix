@@ -19,7 +19,7 @@
     devShells.${system}.default = pkgs.mkShell {
       shellHook = ''
         export PUPPETEER_EXECUTABLE_PATH=${pkgs.chromium}/bin/chromium
-        bun i
+        bun ci
       '';
 
       # make sure dependencies are linked
@@ -27,7 +27,7 @@
 
       buildInputs = with pkgs; [
         bun
-        nodejs_22
+        nodejs_24
         chromium
         glib
         nss         # pour TLS

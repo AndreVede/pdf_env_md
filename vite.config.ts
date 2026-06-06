@@ -13,6 +13,7 @@ export default defineConfig({
         rollupOptions: {
             input: path.resolve(import.meta.dirname, 'src', 'index.ts'),
         },
+        minify: true,
         ssr: true,
     },
     ssr: {},
