@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
 import * as path from 'path';
 import autoprefixer from 'autoprefixer';
 
-export default defineConfig({
+/** @type {import('vite').UserConfig} */
+export default {
     resolve: {
         alias: {
             '@src': path.resolve(import.meta.dirname, 'src'),
@@ -22,4 +22,4 @@ export default defineConfig({
             plugins: [autoprefixer({})],
         },
     },
-});
+};
